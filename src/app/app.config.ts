@@ -6,6 +6,7 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { definePreset } from '@primeng/themes';
 import { primaryPalette } from './core/config/colors';
+import { provideStore } from '@ngrx/store';
 
 // Primary color customization
 const jemsPreset = definePreset(Aura, {
@@ -33,16 +34,17 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     providePrimeNG({
-      ripple: true,
-      theme: {
-        preset: jemsPreset,
-        options: {
-          cssLayer: {
-            name: 'primeng',
-            order: 'app-styles, primeng'
-          }
+        ripple: true,
+        theme: {
+            preset: jemsPreset,
+            options: {
+                cssLayer: {
+                    name: 'primeng',
+                    order: 'app-styles, primeng'
+                }
+            }
         }
-      }
-    })
-  ]
+    }),
+    provideStore()
+]
 };
