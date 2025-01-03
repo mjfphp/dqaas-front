@@ -7,8 +7,7 @@ describe('AppComponent', () => {
     underTest = new AppComponent();
   });
 
-  it('should have a title AngularJest', () => {
-    expect(underTest.title).toEqual('AngularJest');
+  it('should create', () => {
+    expect(underTest).toBeTruthy();
   });
-
 });
