@@ -1,0 +1,432 @@
+@use './jems-palette.scss' as *;
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    background: rgb(255, 189, 17);
+    background: linear-gradient(37deg, rgba(255, 189, 17, 1) 0%, rgba(255, 76, 137, 1) 50%);
+}
+
+.container::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url(../images/img-00.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 20%;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Link ]*/
+a {
+    font-size: 14px;
+    line-height: 1.7;
+    color: $gray;
+    margin: 0px;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+}
+
+a:focus {
+    outline: none !important;
+}
+
+a:hover {
+    text-decoration: none;
+    color: $pink;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Button ]*/
+button {
+    outline: none !important;
+    border: none;
+    background: transparent;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Utility ]*/
+.txt1 {
+    font-size: 14px;
+    line-height: 1.5;
+    color: $gray;
+}
+
+.txt2 {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333333;
+    text-transform: uppercase;
+}
+
+.bg1 {
+    background-color: #3b5998
+}
+
+.bg2 {
+    background-color: #1da1f2
+}
+
+.bg3 {
+    background-color: #ea4335
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Login ]*/
+
+.icon-container {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.login-icon {
+    font-size: 42px;
+    color: #ffffff;
+    background: linear-gradient(37deg, #FFBD11, #FF4C89);
+    padding: 20px 20px;
+    border-radius: 22px;
+    box-shadow: 0 0px 12px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    transform: scale(1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.container-login100 {
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.wrap-login100 {
+    z-index: 1;
+    width: 500px;
+    background: #fff;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 5px 24px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.wrap-login100::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url(../images/img-00.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 12%;
+}
+
+.welcome-msg {
+    font-size: 22px;
+}
+
+.copyright-desktop {
+    display: block;
+}
+
+.copyright-mobile {
+    margin-top: 6px;
+    display: none;
+}
+
+@media (max-width: 439px) {
+    .copyright-desktop {
+        display: none;
+    }
+
+    .copyright-mobile {
+        display: block;
+    }
+}
+
+/*------------------------------------------------------------------
+[ Form ]*/
+
+.login100-form {
+    width: 100%;
+}
+
+.login100-form-title {
+    font-weight: 700;
+    display: block;
+    font-size: 45px;
+    color: $gray;
+    line-height: 1.2;
+    text-align: center;
+}
+
+/*------------------------------------------------------------------
+[ Button ]*/
+.container-login100-form-btn {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.wrap-login100-form-btn {
+    width: 80%;
+    display: block;
+    position: relative;
+    z-index: 1;
+    border-radius: 25px;
+    overflow: hidden;
+    margin: 0 auto;
+    box-shadow: 0 5px 30px 0px rgba(255, 125, 85, 0.3);
+    -moz-box-shadow: 0 5px 30px 0px rgba(255, 125, 85, 0.3);
+    -webkit-box-shadow: 0 5px 30px 0px rgba(255, 125, 85, 0.3);
+    -o-box-shadow: 0 5px 30px 0px rgba(255, 125, 85, 0.3);
+    -ms-box-shadow: 0 5px 30px 0px rgba(255, 125, 85, 0.3);
+}
+
+.login100-form-bgbtn {
+    position: absolute;
+    z-index: -1;
+    width: 300%;
+    height: 100%;
+    background: -webkit-linear-gradient(right, $yellow, $pink, $yellow, $pink);
+    background: -o-linear-gradient(right, $yellow, $pink, $yellow, $pink);
+    background: -moz-linear-gradient(right, $yellow, $pink, $yellow, $pink);
+    background: linear-gradient(right, $yellow, $pink, $yellow, $pink);
+    top: 0;
+    left: -100%;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.login100-form-btn {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.2;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    height: 50px;
+}
+
+.wrap-login100-form-btn:hover .login100-form-bgbtn {
+    left: 0;
+}
+
+.google-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    color: #555567;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    width: 80%;
+    max-width: 400px;
+    margin: 10px 0;
+}
+
+.google-login-btn:hover {
+    background-color: #f7f7f7;
+    border-color: #aaa;
+}
+
+.google-login-btn .icon {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.google-login-btn span {
+    display: inline-block;
+    text-transform: none;
+    /* Keep the text normal */
+    font-weight: normal;
+}
+
+@media (max-width: 477px) {
+    .wrap-login100-form-btn {
+        width: 100%;
+    }
+
+    .google-login-btn {
+        width: 100%;
+    }
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Social item ]*/
+.login100-social-item {
+    font-size: 25px;
+    color: #fff;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.login100-social-item:hover {
+    color: #fff;
+    background-color: #333333;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Responsive ]*/
+
+@media (max-width: 576px) {
+    .wrap-login100 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ PADDING ]*/
+
+.p-t-8 {
+    padding-top: 8px;
+}
+
+.p-t-54 {
+    padding-top: 54px;
+}
+
+.p-t-65 {
+    padding-top: 65px;
+}
+
+.p-t-155 {
+    padding-top: 155px;
+}
+
+.p-b-17 {
+    padding-bottom: 17px;
+}
+
+.p-b-20 {
+    padding-bottom: 20px;
+}
+
+.p-b-32 {
+    padding-bottom: 32px;
+}
+
+.p-b-49 {
+    padding-bottom: 49px;
+}
+
+.p-l-55 {
+    padding-left: 55px;
+}
+
+.p-r-55 {
+    padding-right: 55px;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Text ]*/
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-middle {
+    vertical-align: middle;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Flex ]*/
+.flex-col-c {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    flex-direction: column;
+    -ms-align-items: center;
+    align-items: center;
+}
+
+.flex-col-c-m {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    flex-direction: column;
+    -ms-align-items: center;
+    align-items: center;
+    justify-content: center;
+}

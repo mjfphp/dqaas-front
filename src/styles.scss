@@ -1,4 +1,5 @@
 @use './assets/layout/fonts/fonts.scss' as *;
+@use './assets/layout/scss/jems-login.scss' as *;
 
 body {
     font-family: $font-familly;

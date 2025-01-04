@@ -4,6 +4,7 @@ import {
   FormOutline,
   DashboardOutline,
   UserOutline,
+  LoginOutline,
   LogoutOutline,
   SettingOutline
 } from '@ant-design/icons-angular/icons';
@@ -14,6 +15,7 @@ export const icons = [
   DashboardOutline,
   FormOutline,
   UserOutline,
+  LoginOutline,
   LogoutOutline,
   SettingOutline
 ];
