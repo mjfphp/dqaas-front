@@ -8,6 +8,7 @@ import { fr_FR, provideNzI18n } from 'ng-zorro-antd/i18n';
 import { provideStore } from '@ngrx/store';
 import { FormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
+import { provideOAuthClient } from 'angular-oauth2-oidc';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideNzIcons(icons),
     provideNzI18n(fr_FR),
-    provideStore()
+    provideStore(),
+    provideOAuthClient()
   ]
 };
