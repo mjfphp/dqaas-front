@@ -24,13 +24,33 @@
                 </div>
 
                 <div class="login-button-container">
-                    <button class="google-login-btn" (click)="onLogin()">
+                    <button class="google-login-btn" (click)="onGoogleLogin()">
                         <nz-space [nzSize]="6">
                             <span *nzSpaceItem>
-                                <img src="assets/layout/svg/google-g.svg" />
+                                <img src="assets/layout/svg/google-logo.svg" />
                             </span>
                             <span *nzSpaceItem>
                                 Se connecter avec Google
+                            </span>
+                        </nz-space>
+                    </button>
+                    <button class="google-login-btn" (click)="onMicrosoftLogin()">
+                        <nz-space [nzSize]="6">
+                            <span *nzSpaceItem>
+                                <img src="assets/layout/svg/microsoft-logo.svg" />
+                            </span>
+                            <span *nzSpaceItem>
+                                Se connecter avec Microsoft
+                            </span>
+                        </nz-space>
+                    </button>
+                    <button class="google-login-btn" (click)="onLogout()">
+                        <nz-space [nzSize]="6">
+                            <span *nzSpaceItem>
+                                <nz-icon nzType="logout" nzTheme="outline" />
+                            </span>
+                            <span *nzSpaceItem>
+                                Logout
                             </span>
                         </nz-space>
                     </button>

@@ -3,6 +3,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { AuthService } from '../../../../../core/authentication/services/auth.service';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-login-page',
@@ -12,18 +13,37 @@ import { AuthService } from '../../../../../core/authentication/services/auth.se
 })
 export class LoginPageComponent {
 
-  constructor(private readonly _authService: AuthService) { }
+  constructor(private readonly _authService: AuthService,
+    private readonly oauthService: OAuthService) { }
 
   ngOnInit(): void {
+
+    console.log('User profile : ', this._authService.isLoggedIn);
+
     if (this._authService.identityClaims) {
       this._authService.userProfile.subscribe(profile => {
         console.log('User profile : ', profile);
       });
     }
+
+    this.oauthService.tryLogin({
+      onTokenReceived: context => {
+        console.debug("logged in");
+        console.debug(context);
+      }
+    });
   }
 
-  onLogin() {
-    this._authService.login();
+  onGoogleLogin() {
+    this._authService.loginGoogle();
+  }
+
+  onMicrosoftLogin() {
+    this._authService.loginMicrosoft();
+  }
+
+  onLogout() {
+    this._authService.logout();
   }
 
 }

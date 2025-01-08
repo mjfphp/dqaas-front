@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { googleAuthConfig } from '../configs/google-auth.config';
+import { googleAuthConfig, microsoftAuthConfig } from '../configs/auth.config';
+import { AuthProvider } from '../../../shared/enums/auth-provider.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +11,33 @@ export class AuthService {
 
   constructor(private readonly httpClient: HttpClient,
     private readonly oauthService: OAuthService) {
-    this.cofigure();
+    this.initializeAuth(AuthProvider.Google);
   }
 
-  cofigure() {
-    this.oauthService.configure(googleAuthConfig);
+  initializeAuth(authProvider: AuthProvider) {
+    // Dynamically configure OAuthService based on the chosen provider
+    if (authProvider === AuthProvider.Google) {
+      this.oauthService.configure(googleAuthConfig);
+    } else if (authProvider === AuthProvider.Microsoft) {
+      this.oauthService.configure(microsoftAuthConfig);
+    }
+
+    // Load discovery document and attempt login
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
   }
 
-  login() {
+  loginGoogle() {
+    this.initializeAuth(AuthProvider.Google);
+    this.oauthService.initLoginFlow();
+  }
+
+  loginMicrosoft() {
+    this.initializeAuth(AuthProvider.Microsoft);
     this.oauthService.initLoginFlow();
   }
 
   logout() {
-    this.oauthService.logOut();
+    this.oauthService.revokeTokenAndLogout();
   }
 
   get identityClaims() {
