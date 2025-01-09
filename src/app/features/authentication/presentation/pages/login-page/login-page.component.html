@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="login-button-container">
-                    <button class="google-login-btn" (click)="onGoogleLogin()">
+                    <button class="login-btn" [disabled]="isLoginInProgress" (click)="onGoogleLogin()">
                         <nz-space [nzSize]="6">
                             <span *nzSpaceItem>
                                 <img src="assets/layout/svg/google-logo.svg" />
@@ -34,7 +34,7 @@
                             </span>
                         </nz-space>
                     </button>
-                    <button class="google-login-btn" (click)="onMicrosoftLogin()">
+                    <button class="login-btn" [disabled]="isLoginInProgress" (click)="onMicrosoftLogin()">
                         <nz-space [nzSize]="6">
                             <span *nzSpaceItem>
                                 <img src="assets/layout/svg/microsoft-logo.svg" />
@@ -44,7 +44,7 @@
                             </span>
                         </nz-space>
                     </button>
-                    <button class="google-login-btn" (click)="onLogout()">
+                    <button class="login-btn" (click)="onLogout()">
                         <nz-space [nzSize]="6">
                             <span *nzSpaceItem>
                                 <nz-icon nzType="logout" nzTheme="outline" />

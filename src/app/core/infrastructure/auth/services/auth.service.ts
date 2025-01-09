@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { googleAuthConfig, microsoftAuthConfig } from '../configs/auth.config';
-import { AuthProvider } from '../../../shared/enums/auth-provider.enum';
+import { AuthProvider } from '../../../../shared/enums/auth-provider.enum';
+import { AuthServiceInterface } from '../../../domain/services/auth-service.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements AuthServiceInterface {
 
   constructor(private readonly httpClient: HttpClient,
     private readonly oauthService: OAuthService) {
@@ -26,30 +27,21 @@ export class AuthService {
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
   }
 
-  loginGoogle() {
-    this.initializeAuth(AuthProvider.Google);
+  login(authProvider: AuthProvider): void {
+    this.initializeAuth(authProvider);
     this.oauthService.initLoginFlow();
   }
 
-  loginMicrosoft() {
-    this.initializeAuth(AuthProvider.Microsoft);
-    this.oauthService.initLoginFlow();
+  hasValidAccessToken(): boolean {
+    return this.oauthService.hasValidAccessToken();
   }
 
-  logout() {
-    this.oauthService.revokeTokenAndLogout();
-  }
-
-  get identityClaims() {
-    return this.oauthService.getIdentityClaims();
-  }
-
-  get accessToken() {
+  getAccessToken(): string {
     return this.oauthService.getAccessToken();
   }
 
-  get isLoggedIn() {
-    return this.oauthService.hasValidAccessToken();
+  logout(): void {
+    this.oauthService.revokeTokenAndLogout();
   }
 
   get userProfile() {
@@ -57,7 +49,7 @@ export class AuthService {
 
     return this.httpClient.get(url, {
       headers: {
-        Authorization: `Bearer ${this.accessToken}`
+        Authorization: `Bearer ${this.getAccessToken()}`
       }
     });
   }

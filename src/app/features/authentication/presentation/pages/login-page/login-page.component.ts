@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
-import { AuthService } from '../../../../../core/authentication/services/auth.service';
-import { OAuthService } from 'angular-oauth2-oidc';
+import { Store } from '@ngrx/store';
+import { authActions } from '../../../application/auth.actions';
+import { AuthProvider } from '../../../../../shared/enums/auth-provider.enum';
+import { AuthServiceInterface } from '../../../../../core/domain/services/auth-service.interface';
 
 @Component({
   selector: 'app-login-page',
@@ -13,37 +15,32 @@ import { OAuthService } from 'angular-oauth2-oidc';
 })
 export class LoginPageComponent {
 
-  constructor(private readonly _authService: AuthService,
-    private readonly oauthService: OAuthService) { }
+  isLoginInProgress: boolean = false;
+
+  constructor(private readonly _authService: AuthServiceInterface,
+    private readonly _store: Store) { }
 
   ngOnInit(): void {
 
-    console.log('User profile : ', this._authService.isLoggedIn);
+    this.isLoginInProgress = this._authService.hasValidAccessToken();
 
-    if (this._authService.identityClaims) {
-      this._authService.userProfile.subscribe(profile => {
-        console.log('User profile : ', profile);
-      });
+    if (this._authService.hasValidAccessToken()) {
+      console.log('login success : ', this._authService.hasValidAccessToken());
+      this._store.dispatch(authActions.loginSuccess());
     }
 
-    this.oauthService.tryLogin({
-      onTokenReceived: context => {
-        console.debug("logged in");
-        console.debug(context);
-      }
-    });
   }
 
   onGoogleLogin() {
-    this._authService.loginGoogle();
+		this._store.dispatch(authActions.login({authProvider: AuthProvider.Google}));
   }
 
   onMicrosoftLogin() {
-    this._authService.loginMicrosoft();
+		this._store.dispatch(authActions.login({authProvider: AuthProvider.Microsoft}));
   }
 
   onLogout() {
-    this._authService.logout();
+    this._store.dispatch(authActions.logout());
   }
 
 }
