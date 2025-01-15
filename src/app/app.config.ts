@@ -1,20 +1,29 @@
 import { ApplicationConfig, importProvidersFrom, isDevMode, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { icons } from './core/infrastructure/ng-zorro/configs/icons-provider';
 import { provideNzIcons } from 'ng-zorro-antd/icon';
 import { fr_FR, provideNzI18n } from 'ng-zorro-antd/i18n';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { FormsModule } from '@angular/forms';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { routes } from './app.routes';
 import { reducers } from './core/infrastructure/ngrx/configs/reducers.config';
 import { effects } from './core/infrastructure/ngrx/configs/effects.configs';
+import { icons } from './core/infrastructure/ng-zorro/configs/icons-provider';
 import { AuthServiceInterface } from './core/domain/services/auth-service.interface';
 import { AuthService } from './core/infrastructure/auth/services/auth.service';
+import { TokenServiceInterface } from './core/domain/services/token-service.interface';
+import { TokenService } from './core/infrastructure/auth/services/token.service';
+import { interceptorsFns } from './core/infrastructure/angular-http/configs/interceptors.config';
+import { environment } from '../environments/environment';
+import { FakeTokenService } from './core/infrastructure/auth/services-mock/fake-token.service';
+import { TsLocalStorageService } from './shared/local-storage/infrastructure/ts-local-storage.service';
+import { LocalStorageServiceInterface } from './shared/local-storage/domain/services/local-storage.interface';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,9 +32,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     importProvidersFrom(FormsModule),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors(interceptorsFns)),
 
     // NG-ZORRO providers
+    importProvidersFrom(NzModalModule),
     provideNzIcons(icons),
     provideNzI18n(fr_FR),
 
@@ -48,6 +58,14 @@ export const appConfig: ApplicationConfig = {
 		{
 			provide: AuthServiceInterface,
 			useClass: AuthService
+		},
+		{
+			provide: TokenServiceInterface,
+			useClass: environment.useFakeAuth ? FakeTokenService : TokenService
+		},
+    {
+			provide: LocalStorageServiceInterface,
+			useClass: TsLocalStorageService,
 		}
   ]
 };

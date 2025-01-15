@@ -1,9 +1,13 @@
 export interface AuthState {
-    isLoggedIn: boolean;
     isLoginRequestHandled: boolean;
-}
+    isAccessTokenReceived: boolean;
+    isLoggedIn: boolean;
+    isLoading: boolean;
+};
 
 export const initialState: AuthState = {
-    isLoggedIn: false,
     isLoginRequestHandled: false,
+    isAccessTokenReceived: false,
+    isLoggedIn: false,
+    isLoading: false
 };

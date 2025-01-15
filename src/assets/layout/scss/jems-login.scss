@@ -141,7 +141,7 @@ button:hover {
     opacity: 12%;
 }
 
-.login-welcome-msg {
+.login-body-title {
     font-size: 26px;
 }
 
@@ -161,6 +161,41 @@ button:hover {
 
     .copyright-mobile {
         display: block;
+    }
+}
+
+/*------------------------------------------------------------------
+[ Loading ]*/
+.loading-dots {
+    display: inline-block;
+    position: absolute;
+    text-align: left;
+}
+
+.loading-dots::after {
+    content: '';
+    animation: loading-dots 1.5s infinite step-end;
+}
+
+@keyframes loading-dots {
+    0% {
+        content: '';
+    }
+
+    25% {
+        content: '.';
+    }
+
+    50% {
+        content: '..';
+    }
+
+    75% {
+        content: '...';
+    }
+
+    100% {
+        content: '.';
     }
 }
 
@@ -426,4 +461,11 @@ button:hover {
     -ms-align-items: center;
     align-items: center;
     justify-content: center;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ Logos ]*/
+.google-logo {
+    top: -1px;
+    position: relative;
 }

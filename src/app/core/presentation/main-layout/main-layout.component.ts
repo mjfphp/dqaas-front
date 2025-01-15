@@ -6,6 +6,8 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { Store } from '@ngrx/store';
+import { authActions } from '../../../features/authentication/application/auth.actions';
 
 @Component({
   selector: 'app-main-layout',
@@ -23,5 +25,13 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
   styleUrl: './main-layout.component.scss'
 })
 export class MainLayoutComponent {
-  isCollapsed = false;
+
+  protected isCollapsed = false;
+
+  constructor(private readonly _store: Store) { }
+
+  onLogout(): void {
+    this._store.dispatch(authActions.logout());
+  }
+
 }

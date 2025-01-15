@@ -11,50 +11,50 @@
                     DQaaS
                 </span>
 
-                <div class="txt1 text-center p-b-20">
-                    <span class="login-welcome-msg">
-                        Bienvenue à nouveau !
-                    </span>
-                </div>
+                <ng-container *ngIf="!(isLoading$ | async); else loading">
+                    <div class="txt1 text-center p-b-20">
+                        <span class="login-body-title">
+                            Bienvenue à nouveau !
+                        </span>
+                    </div>
 
-                <div class="p-b-20">
-                    <span>
-                        <nz-divider nzText="Connectez-vous avec"></nz-divider>
-                    </span>
-                </div>
+                    <div class="p-b-20">
+                        <span>
+                            <nz-divider nzText="Connectez-vous avec"></nz-divider>
+                        </span>
+                    </div>
 
-                <div class="login-button-container">
-                    <button class="login-btn" [disabled]="isLoginInProgress" (click)="onGoogleLogin()">
-                        <nz-space [nzSize]="6">
-                            <span *nzSpaceItem>
-                                <img src="assets/layout/svg/google-logo.svg" />
-                            </span>
-                            <span *nzSpaceItem>
-                                Se connecter avec Google
-                            </span>
-                        </nz-space>
-                    </button>
-                    <button class="login-btn" [disabled]="isLoginInProgress" (click)="onMicrosoftLogin()">
-                        <nz-space [nzSize]="6">
-                            <span *nzSpaceItem>
-                                <img src="assets/layout/svg/microsoft-logo.svg" />
-                            </span>
-                            <span *nzSpaceItem>
-                                Se connecter avec Microsoft
-                            </span>
-                        </nz-space>
-                    </button>
-                    <button class="login-btn" (click)="onLogout()">
-                        <nz-space [nzSize]="6">
-                            <span *nzSpaceItem>
-                                <nz-icon nzType="logout" nzTheme="outline" />
-                            </span>
-                            <span *nzSpaceItem>
-                                Logout
-                            </span>
-                        </nz-space>
-                    </button>
-                </div>
+                    <div class="login-button-container">
+                        <button class="login-btn" (click)="onGoogleLogin()">
+                            <nz-space [nzSize]="6">
+                                <span *nzSpaceItem>
+                                    <img src="assets/layout/svg/google-logo.svg" class="google-logo" />
+                                </span>
+                                <span *nzSpaceItem>
+                                    Se connecter avec Google
+                                </span>
+                            </nz-space>
+                        </button>
+                        <button class="login-btn" (click)="onMicrosoftLogin()">
+                            <nz-space [nzSize]="6">
+                                <span *nzSpaceItem>
+                                    <img src="assets/layout/svg/microsoft-logo.svg" />
+                                </span>
+                                <span *nzSpaceItem>
+                                    Se connecter avec Microsoft
+                                </span>
+                            </nz-space>
+                        </button>
+                    </div>
+                </ng-container>
+
+                <ng-template #loading>
+                    <div class="txt1 text-center p-b-20">
+                        <span class="login-body-title">
+                            Connexion en cours<span class="loading-dots"></span>
+                        </span>
+                    </div>
+                </ng-template>
 
                 <div class="flex-col-c p-t-155">
                     <span class="txt1 p-b-17">

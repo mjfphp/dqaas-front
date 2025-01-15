@@ -9,7 +9,8 @@ export const googleAuthConfig: AuthConfig = {
     strictDiscoveryDocumentValidation: environment.production,
     responseType: 'id_token token',
     scope: 'openid profile email',
-    // dummyClientSecret: 'secret',
+    requireHttps: true,
+    // dummyClientSecret: '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',
 };
 
 export const microsoftAuthConfig: AuthConfig = {
@@ -19,6 +20,7 @@ export const microsoftAuthConfig: AuthConfig = {
     logoutUrl: environment.redirectUri,
     strictDiscoveryDocumentValidation: environment.production,
     responseType: 'id_token token',
-    scope: 'openid profile email offline_access'
+    scope: 'openid profile email offline_access',
+    requireHttps: true,
     // dummyClientSecret: 'secret',
 };
