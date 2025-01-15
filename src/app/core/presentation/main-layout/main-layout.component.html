@@ -1,0 +1,86 @@
+<nz-layout class="app-layout">
+    <!-- App Sidebar Starts -->
+    <nz-sider nzCollapsible nzTheme="dark" class="menu-sidebar" nzWidth="256px" nzBreakpoint="md"
+        [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+        <!-- App Sidebar Logo -->
+        <div class="sidebar-logo">
+            <a routerLink="/">
+                <img width="42" src="/assets/layout/svg/jems-favicon.svg" alt="logo jems group" decoding="async">
+                <h1>DQaaS</h1>
+            </a>
+        </div>
+        
+        <!-- App Sidebar Menu -->
+        <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/dashboard">
+                    <nz-icon nzType="dashboard" />
+                    <span>Tableau de bord</span>
+                </a>
+            </li>
+            <li nz-submenu nzOpen nzTitle="Paramètres" nzIcon="setting">
+                <ul>
+                    <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/users">Utilisateurs</a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/tokens">Tokens</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nz-sider>
+    <!-- App Sidebar Ends -->
+
+    <nz-layout>
+        <!-- App Header Starts -->
+        <nz-header>
+            <div class="app-header">
+                <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+                    <nz-icon class="trigger" [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" />
+                </span>
+
+                <div class="header-actions">
+                    <button nz-button nzType="primary" [nzSize]="'large'" nzShape="circle" nz-dropdown nzTrigger="click"
+                        [nzDropdownMenu]="menu">S</button>
+
+                    <nz-dropdown-menu #menu="nzDropdownMenu">
+                        <ul nz-menu>
+                            <li nz-menu-item>
+                                <nz-icon nzType="user" nzTheme="outline" /> Profil
+                            </li>
+                            <li nz-menu-divider></li>
+                            <li nz-menu-item (click)="onLogout()">
+                                <nz-icon nzType="logout" /> Déconnexion
+                            </li>
+                        </ul>
+                    </nz-dropdown-menu>
+                </div>
+            </div>
+        </nz-header>
+        <!-- App Header Ends -->
+
+        <!-- App Content Starts -->
+        <nz-content>
+            <div class="inner-content">
+                <router-outlet></router-outlet>
+            </div>
+        </nz-content>
+        <!-- App Content Ends -->
+
+        <!-- App Footer Starts -->
+        <nz-footer>
+            <nz-space [nzSize]="6">
+                <span *nzSpaceItem>
+                    DQaaS ©2025 by
+                </span>
+                <span *nzSpaceItem>
+                    <a href="https://www.jems-group.com/fr/" target="_blank">
+                        <img width="42" src="/assets/layout/svg/jems-logo.svg" alt="logo jems group" decoding="async">
+                    </a>
+                </span>
+            </nz-space>
+        </nz-footer>
+         <!-- App Footer Ends -->
+    </nz-layout>
+</nz-layout>

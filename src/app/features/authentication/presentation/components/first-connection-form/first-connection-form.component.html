@@ -1,0 +1,16 @@
+<p>
+    Bienvenue lors de votre première connexion !
+</p>
+<p>
+    Veuillez saisir votre code projet pour finaliser l’accès à votre compte :
+</p>
+<form nz-form [formGroup]="firstConnectionForm">
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="project-code">
+            Code du Projet
+        </nz-form-label>
+        <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Le code du projet est requis !">
+            <input nz-input id="project-code" formControlName="projectCode" />
+        </nz-form-control>
+    </nz-form-item>
+</form>
