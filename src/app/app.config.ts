@@ -23,18 +23,21 @@ import { environment } from '../environments/environment';
 import { FakeTokenService } from './core/infrastructure/auth/services-mock/fake-token.service';
 import { TsLocalStorageService } from './shared/local-storage/infrastructure/ts-local-storage.service';
 import { LocalStorageServiceInterface } from './shared/local-storage/domain/services/local-storage.interface';
+import { FakeProjectRepositoryImpl } from './features/projects/infrastructure/repositories-mock/fake-project.repository.impl';
+import { ProjectRepositoryImpl } from './features/projects/infrastructure/repositories/project.repository.impl';
+import { ProjectRepository } from './features/projects/domain/repositories/project.repository';
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    // Angular providers
+    // Angular providers______________________________________________________________
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),
     importProvidersFrom(FormsModule),
     provideHttpClient(withInterceptors(interceptorsFns)),
 
-    // NG-ZORRO providers
+    // NG-ZORRO providers_____________________________________________________________
     importProvidersFrom(NzModalModule),
     provideNzIcons(icons),
     provideNzI18n(fr_FR),
@@ -42,7 +45,7 @@ export const appConfig: ApplicationConfig = {
     // OAuth providers
     provideOAuthClient(),
 
-    // State providers
+    // State providers________________________________________________________________
     provideStore(reducers),
     provideEffects(effects),
     provideStoreDevtools({
@@ -54,18 +57,22 @@ export const appConfig: ApplicationConfig = {
       name: 'DQaaS'
     }),
 
-    // Services providers
-		{
-			provide: AuthServiceInterface,
-			useClass: AuthService
-		},
-		{
-			provide: TokenServiceInterface,
-			useClass: environment.useFakeAuth ? FakeTokenService : TokenService
-		},
+    // Services providers_____________________________________________________________
     {
 			provide: LocalStorageServiceInterface,
 			useClass: TsLocalStorageService,
-		}
+		},
+		{
+			provide: AuthServiceInterface,
+			useClass: AuthService,
+		},
+		{
+			provide: TokenServiceInterface,
+			useClass: environment.useFakeAuth ? FakeTokenService : TokenService,
+		},
+		{
+			provide: ProjectRepository,
+			useClass: environment.useFakeProjectRepository ? FakeProjectRepositoryImpl : ProjectRepositoryImpl,
+		},
   ]
 };

@@ -1,0 +1,56 @@
+<nz-page-header nzTitle="Gestion des projets">
+    <nz-breadcrumb [nzAutoGenerate]="true" nz-page-header-breadcrumb>
+        <nz-breadcrumb-item>
+            <a [routerLink]="['/']">
+                <nz-icon nzType="home" />
+            </a>
+        </nz-breadcrumb-item>
+    </nz-breadcrumb>
+    <nz-page-header-extra>
+        <nz-space>
+            <button *nzSpaceItem nz-button nzType="primary" (click)="onCreate()">
+                <nz-icon nzType="plus" nzTheme="outline" />
+                Nouveau projet
+            </button>
+        </nz-space>
+    </nz-page-header-extra>
+</nz-page-header>
+
+<!-- Loading State -->
+<nz-spin nzSize="large" [nzSpinning]="isLoadingProjects$ | async" nzTip="Chargement en cours...">
+    <div class="inner-content">
+        <ng-container *ngIf="!(isLoadingProjects$ | async)">
+            <ng-container *ngIf="(projects$ | async) as projects">
+                <ng-container *ngIf="projects.length > 0; else noProjectsFound">
+                    <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 24 }, { xs: 16, sm: 16, md: 24, lg: 24 }]">
+                        <!-- Sort Form -->
+                        <div nz-col [nzSpan]="24" class="sort-fields">
+                            <div nz-flex [nzJustify]="'flex-end'" [nzAlign]="'flex-start'">
+                                <sort-form [pageName]="pageName" [sortOptions]="sortOptions"></sort-form>
+                            </div>
+                        </div>
+
+                        <!-- Project List -->
+                        <ng-container *ngFor="let project of projects">
+                            <project-card nz-col [nzXs]="24" [nzSm]="24/2" [nzMd]="24/2" [nzLg]="24/3" [nzXl]="24/4"
+                                [project]="project"
+                                (edit)="onEditProject(project.id!)" (delete)="onDeleteProject(project.id!)">
+                            </project-card>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+    </div>
+</nz-spin>
+
+<!-- Empty State -->
+<ng-template #noProjectsFound>
+    <div [nzVertical]="true" nz-flex nzJustify="center" nzAlign="center" class="empty-projects-list">
+        <div nz-row>
+            <div nz-col [nzSpan]="24" class="empty-container">
+                <nz-empty nzNotFoundContent="Aucun projet trouvé!"></nz-empty>
+            </div>
+        </div>
+    </div>
+</ng-template>

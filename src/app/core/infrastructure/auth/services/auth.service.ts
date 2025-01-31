@@ -12,7 +12,7 @@ import { AUTH_PROVIDER, JWT_TOKEN_KEY } from '../../../domain/constants/storage.
 })
 export class AuthService implements AuthServiceInterface {
 
-  constructor(private readonly _httpClient: HttpClient,
+  constructor(private readonly _http: HttpClient,
     private readonly _oauthService: OAuthService,
     private readonly _localStorageServiceInterface: LocalStorageServiceInterface,
   ) {
@@ -67,7 +67,7 @@ export class AuthService implements AuthServiceInterface {
   get userProfile() {
     const url = "https://www.googleapis.com/oauth2/v2/userinfo";
 
-    return this._httpClient.get(url, {
+    return this._http.get(url, {
       headers: {
         Authorization: `Bearer ${this.getAccessToken()}`
       }

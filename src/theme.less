@@ -5,6 +5,10 @@
 @import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
 @import "assets/layout/less/jems-palette.less";
 
+.sidebar-logo {
+    background: @gray !important;
+}
+
 // Override less variables to here
 @primary-color: @pink;
 
@@ -12,7 +16,7 @@
 @layout-header-background: #fff;
 @layout-sider-background: @gray;
 
-// dark theme
+// Dark theme
 @menu-dark-color: @text-color-secondary-dark;
 @menu-dark-danger-color: @error-color;
 @menu-dark-bg: @gray;
@@ -25,6 +29,5 @@
 @menu-dark-selected-item-text-color: @white;
 @menu-dark-item-hover-bg: transparent;
 
-.sidebar-logo {
-    background: @gray !important;
-}
+// Breadcrumb
+@breadcrumb-link-color-hover: @primary-color;

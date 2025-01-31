@@ -1,0 +1,22 @@
+.project-card {
+    cursor: pointer;
+    border-radius: 15px;
+    box-shadow: 0 0 5px rgba(204, 204, 204, 0.1);
+}
+
+.project-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 5px rgba(204, 204, 204, 0.1);
+}
+
+ul.ant-card-actions {
+    border-radius: 0 0 15px 15px;
+}
+
+div.ant-card-body {
+    height: 8rem;
+}
+
+.action-btn {
+    width: 100%;
+}

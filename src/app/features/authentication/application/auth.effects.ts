@@ -5,7 +5,7 @@ import { authActions } from './auth.actions';
 import { AuthServiceInterface } from '../../../core/domain/services/auth-service.interface';
 import { TokenServiceInterface } from '../../../core/domain/services/token-service.interface';
 import { modalActions } from '../../../shared/modal/application/modal.actions';
-import { Modal } from '../../../shared/modal/domain/enums/modal.enum';
+import { ModalType } from '../../../shared/modal/domain/enums/modal-type.enum';
 import { LocalStorageServiceInterface } from '../../../shared/local-storage/domain/services/local-storage.interface';
 import { JWT_TOKEN_KEY } from '../../../core/domain/constants/storage.constants';
 
@@ -28,14 +28,13 @@ export class AuthEffects {
             switchMap(action => {
                 return this._tokenService.generateJwtToken(action.firstConnection).pipe(
                     tap(response => {
-                        console.log('jwt : ', response);
                         this._localStorageServiceInterface.set(JWT_TOKEN_KEY, response.jwtToken);
                     }),
                     concatMap(() => [authActions.loginSuccess()]),
                     catchError(error => {
                         if (error.status === 400) {
                             return concat(
-                                of(modalActions.updateState({ id: Modal.firstConnection, data: action.firstConnection, isLoading: false })),
+                                of(modalActions.updateState({ id: ModalType.firstConnection, data: action.firstConnection, isLoading: false })),
                                 of(modalActions.openFirstConnection({ firstConnection: action.firstConnection })),
                             );
                         }

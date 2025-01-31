@@ -1,0 +1,12 @@
+nz-form-item {
+    margin-right: 0 !important;
+}
+
+.form-control-width {
+    width: 100%; // Ensure it uses the full column width
+    min-width: 150px; // Minimum width to maintain usability
+
+    @media (max-width: 768px) {
+        min-width: 100px; // Adjust for small screens
+    }
+}

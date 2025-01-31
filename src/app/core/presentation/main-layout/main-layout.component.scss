@@ -1,12 +1,10 @@
+@use '../../../../assets/layout/scss/jems-palette.scss' as *;
+
 :host {
     display: flex;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-.app-layout {
-    height: 100vh;
 }
 
 // Header style
@@ -26,14 +24,24 @@ nz-header {
 
 .header-trigger {
     height: 64px;
-    padding: 20px 24px;
+    padding: 10px 14px;
     font-size: 20px;
-    cursor: pointer;
     transition: all .3s, padding 0s;
 }
 
+.header-trigger nz-icon {
+    padding: 10px 10px;
+    cursor: pointer;
+}
+
+.page-title {
+    font-weight: 600;
+    font-size: 20px;
+    color: $gray;
+}
+
 .trigger:hover {
-    color: #FF4C89;
+    color: $pink;
 }
 
 .header-actions {
@@ -83,13 +91,7 @@ nz-header {
 
 // Content style
 nz-content {
-    margin: 24px 24px 0 24px;
-}
-
-.inner-content {
-    padding: 24px;
-    background: #fff;
-    height: 100%;
+    margin: 24px 24px 0 24px !important;
 }
 
 // Footer style

@@ -1,4 +1,5 @@
 <nz-layout class="app-layout">
+
     <!-- App Sidebar Starts -->
     <nz-sider nzCollapsible nzTheme="dark" class="menu-sidebar" nzWidth="256px" nzBreakpoint="md"
         [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
@@ -9,25 +10,33 @@
                 <h1>DQaaS</h1>
             </a>
         </div>
-        
+
         <!-- App Sidebar Menu -->
         <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-            <li nz-menu-item nzMatchRouter>
-                <a routerLink="/dashboard">
-                    <nz-icon nzType="dashboard" />
-                    <span>Tableau de bord</span>
-                </a>
-            </li>
-            <li nz-submenu nzOpen nzTitle="Paramètres" nzIcon="setting">
-                <ul>
+            <ng-container *ngFor="let item of sideMenuItems">
+                <ng-container *ngIf="item.path; else itemWithChildren">
                     <li nz-menu-item nzMatchRouter>
-                        <a routerLink="/users">Utilisateurs</a>
+                        <a [routerLink]="item.path">
+                            <nz-icon [nzType]="item.icon"></nz-icon>
+                            <span>
+                                {{ item.title }}
+                            </span>
+                        </a>
                     </li>
-                    <li nz-menu-item nzMatchRouter>
-                        <a routerLink="/tokens">Tokens</a>
+                </ng-container>
+
+                <ng-template #itemWithChildren>
+                    <li nz-submenu [nzTitle]="item.title" [nzIcon]="item.icon">
+                        <ul>
+                            <li *ngFor="let child of item.children" nz-menu-item nzMatchRouter>
+                                <a [routerLink]="child.path">
+                                    {{ child.title }}
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                </ul>
-            </li>
+                </ng-template>
+            </ng-container>
         </ul>
     </nz-sider>
     <!-- App Sidebar Ends -->
@@ -36,9 +45,13 @@
         <!-- App Header Starts -->
         <nz-header>
             <div class="app-header">
-                <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-                    <nz-icon class="trigger" [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" />
+                <span class="header-trigger">
+                    <nz-icon class="trigger" [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+                        (click)="isCollapsed = !isCollapsed" />
                 </span>
+                <!-- <span class="page-title">
+                    Tableau de bord
+                </span> -->
 
                 <div class="header-actions">
                     <button nz-button nzType="primary" [nzSize]="'large'" nzShape="circle" nz-dropdown nzTrigger="click"
@@ -62,9 +75,7 @@
 
         <!-- App Content Starts -->
         <nz-content>
-            <div class="inner-content">
-                <router-outlet></router-outlet>
-            </div>
+            <router-outlet></router-outlet>
         </nz-content>
         <!-- App Content Ends -->
 
@@ -81,6 +92,7 @@
                 </span>
             </nz-space>
         </nz-footer>
-         <!-- App Footer Ends -->
+        <!-- App Footer Ends -->
+
     </nz-layout>
 </nz-layout>

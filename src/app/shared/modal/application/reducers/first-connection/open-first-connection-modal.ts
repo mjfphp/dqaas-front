@@ -1,5 +1,5 @@
 import { FirstConnection } from "../../../../../core/domain/types/first-connection.type";
-import { Modal } from "../../../domain/enums/modal.enum";
+import { ModalType } from "../../../domain/enums/modal-type.enum";
 import { ModalState } from "../../modal.state";
 
 export function openFirstConnectionModal(
@@ -10,11 +10,11 @@ export function openFirstConnectionModal(
         ...state,
         isOpened: {
             ...state.isOpened,
-            [Modal.firstConnection]: true,
+            [ModalType.firstConnection]: true,
         },
         data: {
             ...state.data,
-            [Modal.firstConnection]: firstConnection,
+            [ModalType.firstConnection]: firstConnection,
         },
         isLoading: {
             ...state.isLoading

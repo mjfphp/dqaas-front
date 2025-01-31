@@ -12,7 +12,7 @@ import { AuthServiceInterface } from '../../../../../core/domain/services/auth-s
 import { selectIsLoading, selectIsLoggedIn } from '../../../application/auth.feature';
 import { FirstConnectionFormComponent } from '../../components/first-connection-form/first-connection-form.component';
 import { selectModalOpened } from '../../../../../shared/modal/application/selectors/modal.selectors';
-import { Modal } from '../../../../../shared/modal/domain/enums/modal.enum';
+import { ModalType } from '../../../../../shared/modal/domain/enums/modal-type.enum';
 import { ModalService } from '../../../../../shared/modal/domain/services/modal.service';
 import { modalActions } from '../../../../../shared/modal/application/modal.actions';
 
@@ -24,7 +24,7 @@ import { modalActions } from '../../../../../shared/modal/application/modal.acti
 })
 export class LoginPageComponent {
 
-  protected modalType = Modal.firstConnection;
+  protected modalType = ModalType.firstConnection;
   protected isFirstConnectionModalOpened$ = this._store.select(selectModalOpened(this.modalType));
   protected isLoading$ = this._store.select(selectIsLoading);
   protected isLoginSuccessful$ = this._store.select(selectIsLoggedIn);
@@ -44,14 +44,14 @@ export class LoginPageComponent {
       this._store.dispatch(authActions.generateJwt({ firstConnection: { projectCode: null } }));
     }
 
-    // First connection handler
+    // Handler to Open First Connection Modal
     this.isFirstConnectionModalOpened$.subscribe(isOpened => {
       if (isOpened) {
         this.openFirstConnectionModal();
       }
     });
 
-    // Login success handler
+    // Handler for Login Success
     this.isLoginSuccessful$.subscribe(isLoggedIn => {
       if (isLoggedIn) {
         this._router.navigate(['/']).then(() => {

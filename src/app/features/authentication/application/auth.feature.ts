@@ -43,5 +43,5 @@ export const {
     selectIsLoginRequestHandled,
     selectIsAccessTokenReceived,
     selectIsLoggedIn,
-    selectIsLoading
+    selectIsLoading,
 } = authFeature;

@@ -1,0 +1,31 @@
+<form nz-form nzLayout="inline" [formGroup]="sortForm">
+    <div nz-row [nzGutter]="[24, 16]" nzJustify="space-between">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+            <nz-form-item>
+                <nz-form-label>
+                    Trier par
+                </nz-form-label>
+                <nz-form-control [nzFlex]="'auto'" class="form-control-width">
+                    <nz-select formControlName="field" nzPlaceHolder="Select sort field">
+                        <ng-container *ngFor="let option of sortOptions">
+                            <nz-option [nzValue]="option.value" [nzLabel]="option.label"></nz-option>
+                        </ng-container>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+            <nz-form-item>
+                <nz-form-label>
+                    Ordre
+                </nz-form-label>
+                <nz-form-control [nzFlex]="'auto'" class="form-control-width">
+                    <nz-select formControlName="order" nzPlaceHolder="Select sort order">
+                        <nz-option nzValue="ascend" nzLabel="Croissant"></nz-option>
+                        <nz-option nzValue="descend" nzLabel="Décroissant"></nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+</form>

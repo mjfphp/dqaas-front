@@ -9,5 +9,5 @@ export const initialState: AuthState = {
     isLoginRequestHandled: false,
     isAccessTokenReceived: false,
     isLoggedIn: false,
-    isLoading: false
+    isLoading: false,
 };

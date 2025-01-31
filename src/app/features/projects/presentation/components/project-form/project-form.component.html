@@ -1,0 +1,35 @@
+<form nz-form nzLayout="vertical" [formGroup]="projectForm">
+    <nz-form-item>
+        <nz-form-label nzRequired nzFor="name">
+            Nom du projet
+        </nz-form-label>
+        <nz-form-control nzErrorTip="Le nom du projet est requis !">
+            <input nz-input id="name" formControlName="name" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzRequired nzFor="description">
+            Description du projet
+        </nz-form-label>
+        <nz-form-control nzErrorTip="La description du projet est requis !">
+            <textarea nz-input id="description" formControlName="description" [nzAutosize]="{ minRows: 2, maxRows: 5 }">
+            </textarea>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzRequired nzFor="code">
+            Code du projet
+        </nz-form-label>
+        <nz-form-control nzErrorTip="Le code du projet est requis !">
+            <input nz-input id="code" formControlName="code" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label nzFor="members_emails">
+            Membres du projet
+        </nz-form-label>
+        <nz-form-control [nzErrorTip]="'Certains emails sont invalides : ' + getEmailErrorList()">
+            <nz-select [nzOpen]="false" nzMode="tags" formControlName="members_emails"></nz-select>
+        </nz-form-control>
+    </nz-form-item>
+</form>

@@ -1,0 +1,35 @@
+<nz-card [nzActions]="[editActionTemplate, deleteActionTemplate]" class="project-card">
+    <div class="ant-card-meta">
+        <div class="ant-card-meta-avatar">
+            <nz-avatar nzIcon="folder"></nz-avatar>
+        </div>
+        <div class="ant-card-meta-detail">
+            <div class="ant-card-meta-title">
+                {{project.name}}
+            </div>
+            <div class="ant-card-meta-description" nz-typography nzEllipsis [nzEllipsisRows]="2">
+                {{project.description}}
+            </div>
+        </div>
+    </div>
+</nz-card>
+
+<ng-template #avatarTemplate>
+    <nz-avatar nzIcon="folder"></nz-avatar>
+</ng-template>
+
+<ng-template #editActionTemplate>
+    <button nz-button nzType="text" class="action-btn">
+        <nz-icon
+            [nzType]="(isLoadingProject$ | async) && (editedProjectId$ | async) === project.id ? 'loading' : 'edit'"
+            (click)="onEdit()" />
+    </button>
+</ng-template>
+
+<ng-template #deleteActionTemplate>
+    <button nz-button nzType="text" class="action-btn">
+        <nz-icon
+            [nzType]="(isLoadingProject$ | async) && (deletedProjectId$ | async) === project.id ? 'loading' : 'delete'"
+            (click)="onDelete()" />
+    </button>
+</ng-template>

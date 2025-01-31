@@ -16,6 +16,7 @@ export const environment = {
     
     redirectUri: 'https://4200-idx-dqaas-fe-1734613702740.cluster-23wp6v3w4jhzmwncf7crloq3kw.cloudworkstations.dev/login',
 
-    useFakeAuth: false,
+    useFakeAuth: true,
+    useFakeProjectRepository: true,
 
 };

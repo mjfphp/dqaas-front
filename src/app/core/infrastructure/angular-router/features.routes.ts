@@ -14,6 +14,16 @@ export const FEATURES_ROUTES: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('../../../features/dashboard/dashboard.routes').then(m => m.DASHBOARD_ROUTES),
+        data: {
+          breadcrumb: 'Tableau de bord'
+        }
+      },
+      {
+        path: 'projects',
+        loadChildren: () => import('../../../features/projects/projects.routes').then(m => m.PROJECTS_ROUTES),
+        data: {
+          breadcrumb: 'Gestion des projets'
+        }
       },
     ]
   }

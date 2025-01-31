@@ -4,3 +4,15 @@
 body {
     font-family: $font-familly;
 }
+
+// Layout style
+.inner-content {
+    padding: 24px !important;
+    background: #fff;
+    min-height: calc(100vh - 260px);
+}
+
+.ant-page-header {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}

@@ -1,9 +1,9 @@
-import { Modal } from "../../../domain/enums/modal.enum";
+import { ModalType } from "../../../domain/enums/modal-type.enum";
 import { ModalState } from "../../modal.state";
 
 export function openModal(
     state: ModalState,
-    { id }: { id: Modal }
+    { id }: { id: ModalType }
 ): ModalState {
     return {
         ...state,

@@ -13,7 +13,7 @@ import { AUTH_PROVIDER } from '../../../domain/constants/storage.constants';
 })
 export class TokenService implements TokenServiceInterface {
 
-  constructor(private readonly _httpClient: HttpClient,
+  constructor(private readonly _http: HttpClient,
     private readonly _oauthService: OAuthService,
     private readonly _localStorageServiceInterface: LocalStorageServiceInterface,
   ) { }
@@ -21,7 +21,7 @@ export class TokenService implements TokenServiceInterface {
   generateJwtToken(firstConnection: FirstConnection): Observable<JwtToken> {
     const authProvider = this._localStorageServiceInterface.get(AUTH_PROVIDER) ?? '';
 
-    return this._httpClient.post<JwtToken>('/api/token', firstConnection, {
+    return this._http.post<JwtToken>('/api/token', firstConnection, {
       headers: {
         Authorization: `Bearer ${this._oauthService.getAccessToken()}`,
         Provider: authProvider,
