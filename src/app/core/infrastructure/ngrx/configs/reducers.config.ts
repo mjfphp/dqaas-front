@@ -9,6 +9,8 @@ import * as authFeature from "../../../../features/authentication/application/au
 import { AuthState } from "../../../../features/authentication/application/auth.state";
 import * as projectsFeature from "../../../../features/projects/application/projects.feature";
 import { ProjectsState } from "../../../../features/projects/application/projects.state";
+import * as userFeature from "../../../../features/user/application/user.feature";
+import { UserState } from "../../../../features/user/application/user.state";
 
 export type State = {
 	[modalFeature.name]: ModalState;
@@ -16,6 +18,7 @@ export type State = {
 	[searchFeature.name]: SearchState;
 	[authFeature.name]: AuthState;
 	[projectsFeature.name]: ProjectsState;
+	[userFeature.name]: UserState;
 };
 
 export const reducers: ActionReducerMap<State> = {
@@ -24,4 +27,5 @@ export const reducers: ActionReducerMap<State> = {
 	[searchFeature.name]: searchFeature.reducer,
 	[authFeature.name]: authFeature.reducer,
 	[projectsFeature.name]: projectsFeature.reducer,
+	[userFeature.name]: userFeature.reducer,
 };

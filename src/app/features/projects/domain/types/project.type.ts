@@ -4,4 +4,5 @@ export type Project = {
     description: string;
     code?: string;
     members_emails?: string[];
+    idOwner?: string;
 }
