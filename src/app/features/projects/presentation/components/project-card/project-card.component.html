@@ -7,6 +7,9 @@
             <div class="ant-card-meta-title">
                 {{project.name}}
             </div>
+            <div *ngIf="(idUser$ | async) === project.idOwner" class="ant-card-meta-description" nz-typography nzEllipsis [nzEllipsisRows]="2">
+                {{project.code}}
+            </div>
             <div class="ant-card-meta-description" nz-typography nzEllipsis [nzEllipsisRows]="2">
                 {{project.description}}
             </div>
@@ -19,7 +22,7 @@
 </ng-template>
 
 <ng-template #editActionTemplate>
-    <button nz-button nzType="text" class="action-btn">
+    <button *ngIf="(idUser$ | async) === project.idOwner" nz-button nzType="text" class="action-btn">
         <nz-icon
             [nzType]="(isLoadingProject$ | async) && (editedProjectId$ | async) === project.id ? 'loading' : 'edit'"
             (click)="onEdit()" />
@@ -27,7 +30,7 @@
 </ng-template>
 
 <ng-template #deleteActionTemplate>
-    <button nz-button nzType="text" class="action-btn">
+    <button *ngIf="(idUser$ | async) === project.idOwner" nz-button nzType="text" class="action-btn">
         <nz-icon
             [nzType]="(isLoadingProject$ | async) && (deletedProjectId$ | async) === project.id ? 'loading' : 'delete'"
             (click)="onDelete()" />

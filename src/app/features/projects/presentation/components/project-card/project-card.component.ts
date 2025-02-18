@@ -6,7 +6,8 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { Project } from '../../../domain/types/project.type';
 import { Store } from '@ngrx/store';
 import { selectDeletedProjectId, selectEditedProjectId, selectIsLoadingProject } from '../../../application/projects.feature';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { selectUserId } from '../../../../user/application/user.selectors';
 
 @Component({
   selector: 'project-card',
@@ -16,6 +17,7 @@ import { AsyncPipe } from '@angular/common';
     NzIconModule,
     NzAvatarModule,
     NzTypographyModule,
+    NgIf,
   ],
   templateUrl: './project-card.component.html',
   styleUrl: './project-card.component.scss',
@@ -30,6 +32,7 @@ export class ProjectCardComponent {
   protected isLoadingProject$ = this._store.select(selectIsLoadingProject);
   protected editedProjectId$ = this._store.select(selectEditedProjectId);
   protected deletedProjectId$ = this._store.select(selectDeletedProjectId);
+  protected idUser$ = this._store.select(selectUserId);
 
   constructor(private readonly _store: Store) { }
 

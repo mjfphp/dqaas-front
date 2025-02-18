@@ -34,6 +34,7 @@ import { searchActions } from '../../../../../shared/search/application/search.a
 import { selectProjectsPageSearchParams } from '../../../../../shared/search/application/selectors/project-search-params.selectors';
 import { SearchParams } from '../../../../../shared/search/domain/types/search-params.type';
 import { Project } from '../../../domain/types/project.type';
+import { selectUserRoleAdmin } from '../../../../user/application/user.selectors';
 
 @Component({
   selector: 'app-projects-list-page',
@@ -76,6 +77,7 @@ export class ProjectsListPageComponent implements OnInit {
 
   protected sortConfig$ = this._store.select(selectProjectsPageSortConfig);
   protected searchParams$ = this._store.select(selectProjectsPageSearchParams);
+  protected isRoleAdmin$ = this._store.select(selectUserRoleAdmin);
 
   protected pageName = PageName.projectsPage;
   protected sortOptions: SortOption[] = [
